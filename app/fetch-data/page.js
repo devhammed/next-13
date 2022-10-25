@@ -1,4 +1,4 @@
-export async function getGithubData() {
+async function getGithubData() {
   // The default is static data fetching
   //  This is equivalent to getStaticProps().
   const res = await fetch('https://api.github.com/users/devhammed');
