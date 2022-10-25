@@ -6,7 +6,8 @@ export const config = {
 };
 
 export default async function handler(req) {
-  const username = req.nextUrl.get('username');
+  const { searchParams } = req.nextUrl;
+  const username = searchParams.get('username');
 
   if (!username) {
     return new Response('Get out of here!', { status: 400 });
