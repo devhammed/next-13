@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { GitHubOgModal, GitHubUsernameModal } from '@/components/modals';
+import { GitHubFormModal } from '@/components/modals';
 
 export default function Home() {
   return (
@@ -45,9 +45,19 @@ export default function Home() {
           </p>
         </Link>
 
-        <GitHubUsernameModal />
+        <GitHubFormModal
+          title='Data Fetching'
+          link='/github/:username'
+          subtitle='View data fetching demo.'
+          prompt='Enter your GitHub username to generate your profile page!'
+        />
 
-        <GitHubOgModal />
+        <GitHubFormModal
+          title='Image Generation'
+          link='/github/og/:username'
+          subtitle='View image generation demo.'
+          prompt='Enter your GitHub username to generate an OG image.'
+        />
       </div>
     </main>
   );
