@@ -1,12 +1,12 @@
 import { useRouter } from 'next/navigation';
 import { useCallback, useEffect, useRef } from 'react';
 
-export interface ModalProps {
+export interface BaseModalProps {
   children: React.ReactNode;
   onDismiss?: () => void;
 }
 
-export function BaseModal({ children, onDismiss }: ModalProps) {
+export function BaseModal({ children, onDismiss }: BaseModalProps) {
   const router = useRouter();
   const overlay = useRef<HTMLDivElement>(null);
   const wrapper = useRef<HTMLDivElement>(null);
