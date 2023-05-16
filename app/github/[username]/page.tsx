@@ -1,5 +1,7 @@
 import { GitHubUserSchema } from '@/contracts/github/user';
 
+export const revalidate = 0;
+
 export interface PageProps {
   params: {
     username: string;
@@ -7,9 +9,7 @@ export interface PageProps {
 }
 
 export async function getUserData(username: string) {
-  const response = await fetch(`https://api.github.com/users/${username}`, {
-    next: { revalidate: 0 },
-  });
+  const response = await fetch(`https://api.github.com/users/${username}`);
 
   const data = await response.json();
 

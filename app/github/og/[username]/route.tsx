@@ -2,6 +2,8 @@ import { NextRequest } from 'next/server';
 import { ImageResponse } from '@vercel/og';
 import { GitHubUserSchema } from '@/contracts/github/user';
 
+export const revalidate = 0;
+
 export const runtime = 'edge';
 
 export async function GET({ nextUrl: { searchParams } }: NextRequest) {
@@ -11,9 +13,7 @@ export async function GET({ nextUrl: { searchParams } }: NextRequest) {
     return new Response('Get out of here!', { status: 400 });
   }
 
-  const response = await fetch(`https://api.github.com/users/${username}`, {
-    next: { revalidate: 0 },
-  });
+  const response = await fetch(`https://api.github.com/users/${username}`);
 
   if (!response.ok) {
     return new Response('Unable to get user details from GitHub!', {
