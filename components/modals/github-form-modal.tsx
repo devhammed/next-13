@@ -5,16 +5,16 @@ import { GitHubForm, GitHubFormSchema } from '@/contracts/github/form';
 
 export interface GitHubFormModalProps {
   title: React.ReactNode;
-  link: string;
   subtitle: React.ReactNode;
+  link: string;
   prompt: React.ReactNode;
 }
 
 export function GitHubFormModal({
   title,
   subtitle,
+  link,
   prompt,
-  link: linkFormat,
 }: GitHubFormModalProps) {
   const router = useRouter();
 
@@ -39,7 +39,7 @@ export function GitHubFormModal({
       const result = GitHubFormSchema.safeParse(form);
 
       if (result.success) {
-        router.push(linkFormat.replace(':username', form.username));
+        router.push(link.replace(':username', form.username));
         return;
       }
 
