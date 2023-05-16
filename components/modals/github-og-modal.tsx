@@ -1,50 +1,19 @@
-import { useRouter } from 'next/navigation';
-import { useCallback, useState } from 'react';
+import { useGitHubForm } from '@/hooks/github/form';
 import { BaseModal } from '@/components/modals/base-modal';
-import { GitHubForm, GitHubFormSchema } from '@/contracts/github/form';
 
 export function GitHubOgModal() {
-  const router = useRouter();
-
-  const [showing, setShowing] = useState<boolean>(false);
-
-  const [form, setForm] = useState<GitHubForm>({
-    username: '',
+  const {
+    form,
+    showing,
+    handleDismiss,
+    handleShow,
+    handleSubmit,
+    handleChange,
+  } = useGitHubForm({
+    generateLink(username) {
+      return `/github/og/${username}`;
+    },
   });
-
-  const handleDismiss = useCallback(() => {
-    setShowing(false);
-  }, []);
-
-  const handleShow = useCallback(() => {
-    setShowing(true);
-  }, []);
-
-  const handleSubmit = useCallback(
-    (event: React.FormEvent<HTMLFormElement>) => {
-      event.preventDefault();
-
-      const result = GitHubFormSchema.safeParse(form);
-
-      if (result.success) {
-        router.push(`/github/og/${result.data.username}`);
-        return;
-      }
-
-      alert('Invalid username!');
-    },
-    [form]
-  );
-
-  const handleChange = useCallback(
-    (event: React.ChangeEvent<HTMLInputElement>) => {
-      setForm((form) => ({
-        ...form,
-        [event.target.name]: event.target.value,
-      }));
-    },
-    []
-  );
 
   return (
     <>
