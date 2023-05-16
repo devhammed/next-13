@@ -1,6 +1,6 @@
 import { useRouter } from 'next/navigation';
 import { useCallback, useState } from 'react';
-import { Modal } from '@/components/modals/base-modal';
+import { BaseModal } from '@/components/modals/base-modal';
 import { GitHubForm, GitHubFormSchema } from '@/contracts/github/form';
 
 export function GitHubOgModal() {
@@ -63,7 +63,7 @@ export function GitHubOgModal() {
       </button>
 
       {showing && (
-        <Modal onDismiss={handleDismiss}>
+        <BaseModal onDismiss={handleDismiss}>
           <div className='flex flex-col justify-center items-center h-80 bg-white text-black w-full max-w-lg mx-auto p-6 rounded-lg'>
             <h1 className='text-3xl text-center font-bold mb-10'>
               Enter your GitHub username to generate an OG image.
@@ -86,7 +86,7 @@ export function GitHubOgModal() {
               </button>
             </form>
           </div>
-        </Modal>
+        </BaseModal>
       )}
     </>
   );

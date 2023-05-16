@@ -6,7 +6,7 @@ export interface ModalProps {
   onDismiss?: () => void;
 }
 
-export function Modal({ children, onDismiss }: ModalProps) {
+export function BaseModal({ children, onDismiss }: ModalProps) {
   const router = useRouter();
   const overlay = useRef<HTMLDivElement>(null);
   const wrapper = useRef<HTMLDivElement>(null);
