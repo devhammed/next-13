@@ -8,14 +8,21 @@ export const metadata = {
   description: 'Dabbling with Next 13!',
 };
 
-export default function RootLayout({
-  children,
-}: {
+export interface RootLayoutProps {
   children: React.ReactNode;
-}) {
+  githubOgModal: React.ReactNode;
+}
+
+export default async function RootLayout({
+  children,
+  githubOgModal,
+}: RootLayoutProps) {
   return (
     <html lang='en'>
-      <body className={plusJakartaSans.className}>{children}</body>
+      <body className={plusJakartaSans.className}>
+        {children}
+        {githubOgModal}
+      </body>
     </html>
   );
 }
