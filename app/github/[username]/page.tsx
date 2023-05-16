@@ -1,4 +1,5 @@
 import { GitHubUserSchema } from '@/contracts/github/user';
+import { notFound } from 'next/navigation';
 
 export const revalidate = 0;
 
@@ -23,11 +24,15 @@ export async function getUserData(username: string) {
 }
 
 export async function generateMetadata({ params }: PageProps) {
-  const user = await getUserData(params.username);
+  try {
+    const user = await getUserData(params.username);
 
-  return {
-    title: `${user.name} Profile`,
-  };
+    return {
+      title: `${user.name} Profile`,
+    };
+  } catch {
+    return notFound();
+  }
 }
 
 export default async function Page({ params }: PageProps) {
