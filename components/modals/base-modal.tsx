@@ -1,3 +1,4 @@
+import 'client-only';
 import { useRouter } from 'next/navigation';
 import { useCallback, useEffect, useRef } from 'react';
 

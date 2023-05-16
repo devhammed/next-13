@@ -1,3 +1,4 @@
+import 'client-only';
 import { useRouter } from 'next/navigation';
 import React, { useCallback, useState } from 'react';
 import { BaseModal } from '@/components/modals/base-modal';
