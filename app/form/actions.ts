@@ -5,11 +5,7 @@ import { ContactFormSchema } from '@/contracts/forms/contact';
 export async function handleSubmit(formData: FormData) {
   const data = Object.fromEntries(formData);
 
-  const result = ContactFormSchema.safeParse(data);
+  const contactForm = ContactFormSchema.parse(data);
 
-  if (!result.success) {
-    throw result.error;
-  }
-
-  return true;
+  console.log(contactForm);
 }
