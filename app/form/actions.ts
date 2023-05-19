@@ -1,11 +1,8 @@
 'use server';
 
+import { withValidation } from '@/utils/form-validation';
 import { ContactFormSchema } from '@/contracts/forms/contact';
 
-export async function handleSubmit(formData: FormData) {
-  const data = Object.fromEntries(formData);
-
-  const contactForm = ContactFormSchema.parse(data);
-
-  console.log(contactForm);
-}
+export const handleSubmit = withValidation(ContactFormSchema, (data) => {
+  console.log('form', data);
+});
