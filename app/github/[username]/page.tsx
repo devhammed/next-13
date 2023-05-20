@@ -1,4 +1,4 @@
-import { GitHubUserSchema } from '@/contracts/github/user';
+import { getUserData } from './actions';
 import { notFound } from 'next/navigation';
 
 export const revalidate = 0;
@@ -7,20 +7,6 @@ export interface PageProps {
   params: {
     username: string;
   };
-}
-
-export async function getUserData(username: string) {
-  const response = await fetch(`https://api.github.com/users/${username}`);
-
-  if (!response.ok) {
-    throw new Error('Unable to get user details from GitHub!');
-  }
-
-  const data = await response.json();
-
-  const user = await GitHubUserSchema.parseAsync(data);
-
-  return user;
 }
 
 export async function generateMetadata({ params }: PageProps) {
